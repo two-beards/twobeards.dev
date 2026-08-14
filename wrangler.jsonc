@@ -1,8 +1,8 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "twobeards-dev",
 	"compatibility_date": "2026-08-14",
 	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "scaffold",
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"assets": {
 		"directory": "./dist",
@@ -10,5 +10,10 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	// workers.dev + version preview URLs while we iterate.
+	// Custom domain route gets added at launch, not before:
+	// "routes": [{ "pattern": "twobeards.dev", "custom_domain": true }]
+	"workers_dev": true,
+	"preview_urls": true
 }
