@@ -1,6 +1,7 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "twobeards-dev",
+	"account_id": "7f517d01601b47763c7dcf90b248366a",
 	"compatibility_date": "2026-08-14",
 	"compatibility_flags": ["global_fetch_strictly_public"],
 	"main": "@astrojs/cloudflare/entrypoints/server",
