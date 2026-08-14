@@ -1,0 +1,55 @@
+/* ------------------------------------------------------------------
+   Design tokens — extracted from David's TwoBeards.Dev Figma comps
+   (frame 1275:6 "dark teal" direction)
+   ------------------------------------------------------------------ */
+:root {
+	/* Colors */
+	--white: #ffffff;
+	--cream: #fffdfa;
+	--card: #f4efe6;
+	--teal: #255353;
+	--teal-deep: #193838;
+	--ink: #181b18;
+	--navy: #112f52;
+	--mustard: #eeaf3d;
+	--punch: #e40b50;
+	--mist: #f7fafc;
+	--gray: #828282;
+
+	--gradient-hero: radial-gradient(
+		circle at 33% 58%,
+		var(--teal) 0%,
+		var(--teal-deep) 70%,
+		var(--ink) 100%
+	);
+
+	/* Type */
+	--font-display: "Albra", georgia, serif;
+	--font-body: "Albra Grotesk", system-ui, sans-serif;
+
+	/* Type scale (Figma: 200 / 64 / 48 / 36 / 24 / 12) */
+	--text-hero: clamp(4.5rem, 1.5rem + 11vw, 12.5rem);
+	--text-h2: clamp(2.25rem, 1.6rem + 2.6vw, 4rem);
+	--text-h3: clamp(1.75rem, 1.3rem + 1.8vw, 3rem);
+	--text-h4: clamp(1.375rem, 1.15rem + 0.9vw, 2.25rem);
+	--text-body: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
+	--text-small: 0.875rem;
+	--text-tiny: 0.75rem;
+
+	--leading-body: 1.5;
+
+	/* Space */
+	--space-xs: 0.5rem;
+	--space-s: 1rem;
+	--space-m: 1.5rem;
+	--space-l: 2.5rem;
+	--space-xl: 4rem;
+	--space-2xl: 6rem;
+
+	/* Layout */
+	--content-width: 56rem; /* 896px text column in the comps */
+	--frame: 8px; /* white inset frame around the hero */
+	--tab-size: 4rem; /* 64px mustard corner tabs */
+	--gutter: clamp(1.25rem, 5vw, 4rem);
+	--indent: clamp(1.25rem, 13vw, 14.5rem); /* content starts ~13.75% in the comps */
+}

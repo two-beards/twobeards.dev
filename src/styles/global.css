@@ -1,0 +1,108 @@
+/* ------------------------------------------------------------------
+   Global styles — reset + base. Component styles live in .astro files.
+   ------------------------------------------------------------------ */
+
+/* Reset */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+html {
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+body {
+	min-height: 100svh;
+	background-color: var(--white);
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: var(--text-body);
+	line-height: var(--leading-body);
+	-webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+svg,
+video {
+	display: block;
+	max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* Base typography */
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-display);
+	font-weight: 900;
+	line-height: 1;
+	text-wrap: balance;
+}
+
+p {
+	text-wrap: pretty;
+	max-width: var(--content-width);
+}
+
+a {
+	color: currentColor;
+}
+
+::selection {
+	background-color: var(--mustard);
+	color: var(--ink);
+}
+
+:focus-visible {
+	outline: 3px solid var(--punch);
+	outline-offset: 2px;
+}
+
+/* Utilities */
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+.skip-link {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	translate: -50% -110%;
+	z-index: 100;
+	padding: 0.5em 1em;
+	background: var(--ink);
+	color: var(--cream);
+	transition: translate 150ms ease;
+}
+
+.skip-link:focus {
+	translate: -50% 0;
+}
