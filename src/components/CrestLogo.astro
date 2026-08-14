@@ -1,0 +1,53 @@
+---
+// The Two Beards crest. The tongue is a hover treat — it stays tucked away
+// until someone mouses over (or keyboard-focuses) the logo tab.
+---
+
+<svg
+	class="crest"
+	width="33"
+	height="46"
+	viewBox="0 0 33 46"
+	fill="none"
+	xmlns="http://www.w3.org/2000/svg"
+	aria-hidden="true"
+>
+	<path
+		fill-rule="evenodd"
+		clip-rule="evenodd"
+		d="M17.0011 11.1153H30.0314L32.6198 8.60721V2.73609L30.0314 0.256532H24.2957V4.24662H28.2371L29.0901 5.07314V6.32716L28.2371 7.12518H18.8836L18.0306 6.29866V2.73609L15.4716 0.256532H0V13.1103V15.6754V22.3445L0.0588273 22.4015L2.55899 24.8241H13.8833L16.4422 22.316L19.0306 24.8241H30.0314L32.6198 22.316V13.1103H3.94143H3.76495H3.52964V4.50312V4.38912V4.24662H13.5597L14.4127 5.07314V8.63571L17.0011 11.1153ZM18.2953 17.1004H29.1489V20.0075L28.2959 20.834H19.1483L18.2953 20.0075V17.1004ZM3.52964 17.1004H14.8539V20.0075L14.0009 20.834H4.38264L3.52964 20.0075V17.1004ZM18.5306 26.0781H30.5608L32.5609 24.0545C32.5315 27.6456 32.4433 31.5787 32.4433 31.5787L28.796 38.2193L27.6194 37.6208C25.884 39.7014 22.5015 43.492 22.5015 43.492L21.9132 42.4944C21.9132 42.4944 16.707 45.772 16.3246 46C15.9422 45.772 10.736 42.4944 10.736 42.4944L10.1477 43.492C10.1477 43.492 6.79456 39.7299 5.02974 37.6208C5.05915 37.6208 3.85319 38.2193 3.85319 38.2193L0.205896 31.5787C0.205896 31.5787 0.0294137 27.6456 0 24.0545L2.05896 26.0496H14.4127L16.4717 24.1115L18.5306 26.0781ZM10.5007 30.8377H22.4426V28.8711H10.5007V30.8377Z"
+		fill="var(--ink)"
+	/>
+	<path
+		class="crest__tongue"
+		fill-rule="evenodd"
+		clip-rule="evenodd"
+		d="M22.1336 30.3929H11V34.3919C11 37.7601 13.4923 40.4905 16.5668 40.4905C19.6412 40.4905 22.1336 37.7601 22.1336 34.3919V30.3929Z"
+		fill="var(--punch)"
+	/>
+</svg>
+
+<style>
+	.crest {
+		overflow: visible;
+	}
+
+	.crest__tongue {
+		transform-box: fill-box;
+		transform-origin: top center;
+		scale: 1 0;
+		transition: scale 250ms cubic-bezier(0.34, 1.8, 0.64, 1);
+	}
+
+	/* Any ancestor with data-crest-hover controls the reveal */
+	:global([data-crest-hover]:hover) .crest__tongue,
+	:global([data-crest-hover]:focus-visible) .crest__tongue {
+		scale: 1 1;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.crest__tongue {
+			transition: none;
+		}
+	}
+</style>

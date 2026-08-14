@@ -1,11 +1,13 @@
 ---
 // The two mustard corner tabs from the comps: crest logo (top-left)
 // and the "menu?" tab (top-right) that opens the who/what/when/where/why flyout.
+import CrestLogo from "./CrestLogo.astro";
 ---
 
 <header class="site-tabs">
-	<a class="tab tab--logo" href="/">
-		<img src="/logo-crest.svg" width="33" height="46" alt="Two Beards — home" />
+	<a class="tab tab--logo" href="/" data-crest-hover>
+		<CrestLogo />
+		<span class="visually-hidden">Two Beards — home</span>
 	</a>
 
 	<nav class="tab tab--menu" aria-label="Main" data-menu>
