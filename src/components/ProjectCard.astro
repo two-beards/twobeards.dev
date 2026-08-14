@@ -1,0 +1,91 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+	project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { title, blurb, url, status, image } = project.data;
+
+const statusLabel: Record<string, string | null> = {
+	live: null,
+	beta: "in beta",
+	retired: "on sabbatical",
+};
+---
+
+<article class="card">
+	<div class="card__media">
+		{image ? <img src={image} alt="" loading="lazy" /> : null}
+	</div>
+	<div class="card__body">
+		<h4 class="card__title">
+			{
+				url ? (
+					<a href={url}>{title}</a>
+				) : (
+					title
+				)
+			}
+			{statusLabel[status] && <span class="card__status">{statusLabel[status]}</span>}
+		</h4>
+		<p class="card__blurb">{blurb}</p>
+	</div>
+</article>
+
+<style>
+	.card {
+		background: var(--card);
+	}
+
+	.card__media {
+		aspect-ratio: 4 / 3;
+		background: var(--card);
+		/* Image placeholders for now — real shots coming from Mike & David */
+	}
+
+	.card__media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.card__body {
+		padding: var(--space-m) var(--space-m) var(--space-l);
+	}
+
+	.card__title {
+		font-size: var(--text-h4);
+		color: var(--ink);
+	}
+
+	.card__title a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.card__title a:hover {
+		text-decoration: underline;
+		text-decoration-color: var(--mustard);
+		text-decoration-thickness: 3px;
+	}
+
+	.card__status {
+		display: inline-block;
+		margin-left: var(--space-xs);
+		padding: 0.1em 0.5em;
+		vertical-align: middle;
+		background: var(--mustard);
+		font-family: var(--font-body);
+		font-size: var(--text-tiny);
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	.card__blurb {
+		margin-top: var(--space-xs);
+		font-size: 1.0625rem;
+		color: var(--teal);
+	}
+</style>

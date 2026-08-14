@@ -1,0 +1,207 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const projects = await getCollection("projects");
+
+const categories = [
+	{ id: "apps", label: "Apps" },
+	{ id: "design-dev", label: "Design and Dev" },
+	{ id: "for-the-people", label: "For the People" },
+] as const;
+
+const byCategory = categories.map((category) => ({
+	...category,
+	projects: projects
+		.filter((project) => project.data.category === category.id)
+		.sort((a, b) => a.data.order - b.data.order),
+}));
+
+// TODO(mike): confirm the contact email
+const contactEmail = "hello@twobeards.dev";
+---
+
+<Base>
+	<section class="hero">
+		<div class="hero__inner">
+			<h1 class="hero__title">sup<span class="hero__q">?</span></h1>
+			<p class="hero__intro">
+				We are Two Beards. Actually, we&rsquo;re two humans who just happen to
+				have beards and build websites and other internety things. We
+				don&rsquo;t usually take on client work, but if you have something
+				fun, <a href={`mailto:${contactEmail}`}>hit us up</a> and we&rsquo;ll
+				chat about it.
+			</p>
+		</div>
+	</section>
+
+	<section class="services" id="services">
+		<h2>services</h2>
+		<p>
+			Performance, Accessibility, Development, API building, Smart Home
+			Planning, Branding and Identity, <s>Mini Van Research</s>, Teach
+			Development and Best Practices, Pizza Sommelier.
+		</p>
+	</section>
+
+	<section class="work" id="work">
+		<h2 class="work__title">
+			Cool Stuff We&rsquo;ve Done<span class="work__asterisk">*</span>
+		</h2>
+		<p class="work__footnote">* at least we think this stuff is cool</p>
+
+		{
+			byCategory.map((category) => (
+				<section class="work__group" aria-labelledby={`cat-${category.id}`}>
+					<h3 id={`cat-${category.id}`}>{category.label}</h3>
+					<div class="work__grid">
+						{category.projects.map((project) => (
+							<ProjectCard project={project} />
+						))}
+					</div>
+				</section>
+			))
+		}
+	</section>
+
+	<section class="who" id="who">
+		<h2>who?</h2>
+		<p>
+			We just generally want to help others. We want to make open source tools
+			to make your jobs easier.
+		</p>
+		<!-- TODO: individual bios + photos ("Ali photoshoot required" per the Figma) -->
+		<div class="who__beards">
+			<article class="beard">
+				<div class="beard__photo" aria-hidden="true"></div>
+				<h3>Mike</h3>
+				<p>Beard number one. Bio coming soon — he's busy coaching soccer.</p>
+			</article>
+			<article class="beard">
+				<div class="beard__photo" aria-hidden="true"></div>
+				<h3>David</h3>
+				<p>Beard number two. Bio coming soon — he's busy in Figma.</p>
+			</article>
+		</div>
+	</section>
+</Base>
+
+<style>
+	/* --- Hero: the dark teal panel with the white inset frame --- */
+	.hero {
+		padding: var(--frame);
+		background: var(--white);
+	}
+
+	.hero__inner {
+		min-height: min(38rem, 80svh);
+		padding: clamp(6rem, 18vh, 10rem) var(--gutter) var(--space-2xl)
+			var(--indent);
+		background: var(--gradient-hero);
+		color: var(--mist);
+	}
+
+	.hero__title {
+		font-size: var(--text-hero);
+		color: var(--white);
+	}
+
+	.hero__q {
+		color: var(--mustard);
+	}
+
+	.hero__intro {
+		margin-top: var(--space-l);
+	}
+
+	.hero__intro a {
+		color: var(--mustard);
+		text-underline-offset: 0.15em;
+	}
+
+	/* --- Sections --- */
+	.services,
+	.work,
+	.who {
+		padding: var(--space-2xl) var(--gutter) var(--space-xl) var(--indent);
+	}
+
+	.services h2,
+	.who h2 {
+		font-size: var(--text-h2);
+		color: var(--navy);
+		margin-bottom: var(--space-m);
+	}
+
+	.services p {
+		color: var(--navy);
+	}
+
+	.services s {
+		text-decoration-thickness: 2px;
+	}
+
+	/* --- Cool Stuff We've Done --- */
+	.work {
+		background: var(--cream);
+		padding-right: var(--gutter);
+	}
+
+	.work__title {
+		font-size: var(--text-h2);
+		color: var(--ink);
+	}
+
+	.work__asterisk {
+		color: var(--punch);
+	}
+
+	.work__footnote {
+		font-size: var(--text-tiny);
+		color: var(--gray);
+		margin-bottom: var(--space-xl);
+	}
+
+	.work__group {
+		margin-top: var(--space-xl);
+	}
+
+	.work__group h3 {
+		font-size: var(--text-h3);
+		color: var(--ink);
+		margin-bottom: var(--space-m);
+	}
+
+	.work__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+		gap: var(--space-l);
+		max-width: 72rem;
+	}
+
+	/* --- Who --- */
+	.who__beards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+		gap: var(--space-l);
+		max-width: 56rem;
+		margin-top: var(--space-xl);
+	}
+
+	.beard__photo {
+		aspect-ratio: 1;
+		background: var(--card);
+		margin-bottom: var(--space-s);
+	}
+
+	.beard h3 {
+		font-size: var(--text-h4);
+	}
+
+	.beard p {
+		margin-top: var(--space-xs);
+		font-size: 1.0625rem;
+		color: var(--teal);
+	}
+</style>

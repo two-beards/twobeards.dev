@@ -1,0 +1,58 @@
+---
+// Footer straight from the comps: Who? / What? / When? / Where? / Why?
+// plus the extremely legally-rigorous copyright line.
+---
+
+<footer class="site-footer" id="contact">
+	<nav aria-label="Footer">
+		<ul class="questions">
+			<li><a href="/#who">Who?</a></li>
+			<li><a href="/#work">What?</a></li>
+			<!-- TODO: real destinations for when/where/why once those exist -->
+			<li><a href="/#services">When?</a></li>
+			<li><a href="/#contact">Where?</a></li>
+			<li><a href="/#who">Why?</a></li>
+		</ul>
+	</nav>
+	<p class="fine-print">© Us Now. Something about rights and stuff.</p>
+</footer>
+
+<style>
+	.site-footer {
+		padding: var(--space-xl) var(--gutter) var(--space-l);
+		background: var(--cream);
+	}
+
+	.questions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-xs);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-family: var(--font-display);
+		font-weight: 900;
+		font-size: var(--text-small);
+	}
+
+	.questions li + li::before {
+		content: "/";
+		margin-inline: var(--space-xs);
+		color: var(--gray);
+	}
+
+	.questions a {
+		color: var(--ink);
+		text-decoration: none;
+	}
+
+	.questions a:hover {
+		color: var(--punch);
+	}
+
+	.fine-print {
+		margin-top: var(--space-s);
+		font-size: var(--text-tiny);
+		color: var(--gray);
+	}
+</style>
